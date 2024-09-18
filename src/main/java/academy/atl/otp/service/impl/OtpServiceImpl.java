@@ -65,7 +65,7 @@ public class OtpServiceImpl implements OtpService {
     var otpCode = otpGenerator.generateOtp();
     var expireTime = Instant.now().plusMillis(EXPIRATION_TIME);
     var sendOtpCount = otpEntity.getSendOtpCount() + 1;
-    otpEntity.setOtp(otpCode);
+    otpEntity.setOtp(Integer.valueOf(otpCode));
     otpEntity.setOtpStatus(OtpStatus.PENDING);
     otpEntity.setExpirationTime(expireTime);
     otpEntity.setSendOtpCount(sendOtpCount);
@@ -76,7 +76,7 @@ public class OtpServiceImpl implements OtpService {
     var otpCode = otpGenerator.generateOtp();
     var expireTime = Instant.now().plusMillis(EXPIRATION_TIME);
 
-    otpEntity.setOtp(otpCode);
+    otpEntity.setOtp(Integer.valueOf(otpCode));
     otpEntity.setOtpStatus(OtpStatus.PENDING);
     otpEntity.setExpirationTime(expireTime);
     otpEntity.setAttemptCount(0);
@@ -95,7 +95,7 @@ public class OtpServiceImpl implements OtpService {
         .attemptCount(0)
         .sendOtpCount(1)
         .expirationTime(expireTime)
-        .otp(otpCode)
+        .otp(Integer.valueOf(otpCode))
         .msisdn(sendOtpRequestDto.getMsisdn())
         .build();
 
